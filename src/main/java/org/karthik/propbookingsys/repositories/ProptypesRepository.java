@@ -1,0 +1,9 @@
+package org.karthik.propbookingsys.repositories;
+
+import org.karthik.propbookingsys.models.PropertyTypes;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProptypesRepository extends JpaRepository<PropertyTypes,Long> {
+}
