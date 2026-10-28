@@ -15,7 +15,7 @@ public class Bookings {
     Long id;
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "user_id",nullable = false)
-    User user;
+    Users users;
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "prop_id",nullable = false)
     Properties property;

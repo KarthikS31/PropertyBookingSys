@@ -1,7 +1,6 @@
 package org.karthik.propbookingsys.controllers;
 
 import org.karthik.propbookingsys.models.Bookings;
-import org.karthik.propbookingsys.repositories.BookingRepository;
 import org.karthik.propbookingsys.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/booking")
+@CrossOrigin(origins = "http://localhost:5173")
 public class BookingController {
     @Autowired
     BookingService bookingService;

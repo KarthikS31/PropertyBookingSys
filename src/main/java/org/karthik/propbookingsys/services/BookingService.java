@@ -18,7 +18,7 @@ public class BookingService {
     PropertyRepository propertyRepository;
 
     public List<Bookings> getAllBookingsByUserId(Long userId){
-        return bookingRepository.findByUser_id(userId);
+        return bookingRepository.findByUsers_id(userId);
     }
 
     public Bookings getBookingById(Long bookingId){
