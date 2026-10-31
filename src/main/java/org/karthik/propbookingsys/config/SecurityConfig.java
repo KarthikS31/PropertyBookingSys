@@ -27,11 +27,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,JwtFilter jwtFilter) throws Exception {
         http.authorizeHttpRequests(authz ->
                         authz
-                                .requestMatchers("/props").authenticated()
                                 .requestMatchers(HttpMethod.POST, "/user/**").permitAll()
+                                .requestMatchers("/props/**").authenticated()
+                                .requestMatchers("/booking/**").authenticated()
+                                .anyRequest().permitAll()
                 )
 //                .formLogin(form-> form.permitAll().defaultSuccessUrl("/props"))
                 .csrf(csrf -> csrf.disable())
+                .cors(cors->{})
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

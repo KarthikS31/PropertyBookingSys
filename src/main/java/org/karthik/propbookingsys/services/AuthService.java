@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -25,13 +26,17 @@ public class AuthService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping
     public Users createUser(@RequestBody Users users){
         users.setPassword(passwordEncoder.encode(users.getPassword()));
         return authRepository.save(users);
     }
 
 
+    public Users getUserByMail(String mail) {
+        return authRepository.findByMail(mail)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("User not found."));
+    }
     @Override
     public UserDetails loadUserByUsername(@NonNull String username) throws UsernameNotFoundException {
         Users users = authRepository.findByMail(username)
